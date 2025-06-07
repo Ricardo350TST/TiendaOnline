@@ -14,12 +14,14 @@ const categoriaInput = document.getElementById('categoria');
 const listaBaratos = document.getElementById('productos-baratos');
 const listaOrdenados = document.getElementById('productos-ordenados');
 const listaNombres = document.getElementById('productos-nombres');
+const listaCategorias = document.getElementById('categorias');
 
 function actualizarListas() {
     // Limpiar todas las listas
     listaBaratos.innerHTML = '';
     listaOrdenados.innerHTML = '';
     listaNombres.innerHTML = '';
+    listaCategorias.innerHTML = '';
 
     // 1. Obtener los productos que cuesten menos de $100.
     const productosPrecio = productos.filter(producto => producto.precio < 100);
@@ -54,6 +56,16 @@ function actualizarListas() {
         item.textContent = `▶️ ${nombre}.`
         listaNombres.appendChild(item);
     });
+
+    // 4. Imprime el nombre de las categorías.
+    const nombresCategorias = productos.map(producto => producto.categoria);
+
+    // Mostrar las categorías
+    nombresCategorias.forEach(categoria => {
+        const item = document.createElement('li');
+        item.textContent = `🚀 ${categoria}.`
+        listaCategorias.appendChild(item);
+    })
 }
 
 // Manejador del formulario
